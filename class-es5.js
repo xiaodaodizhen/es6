@@ -68,14 +68,17 @@ function _inherits(subClass, superClass) { // subClass 子类  superClass父类
 var Child = function (Parent) {
     function Child(params) { // 类的调用检查
         _classCallCheck(this, Child);  // 检测Child 类是否在当前this的原型链上，this是否是Child实例
-        //？？？？ Parent.call(this);
+        Parent.call(this);// 继承父类的私有属性
+
+        //---------------父类有返回值的情况state
         let obj = Object.getPrototypeOf(Child).call(this);// 等价于 child.__proto__  继承父类的私有方法
         let that = this;
         if (typeof obj === "object") {  // 如果返回结果是obj，就会把obj作为实例this----对接标记一
             that = obj;
         }
-       
         return that;
+
+        //--------------父类有返回值得情况end 
     }
     _inherits(Child, Parent);// 表示继承，儿子继承父亲
     return Child;// 闭包最后返回Child的方法，便于使用时new Child()，如果不返回，就没办法new

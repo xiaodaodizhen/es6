@@ -25,11 +25,12 @@ read('1.txt').then(data => {
 });
 
 
-
-// 同时读多个文件（可以理解为同时有多个任务）
-
-//Promise.all 方法执行后返回的依旧是promise实例
-//all方法，多个任务全部成功才算是成功，如果有一个失败了就算是失败
+/**
+ * Promise.all ：同时执行多个任务
+ * 1） 返回结果是Promise数组
+ * 2） 多个任务全部成功才算成功，有一个失败就是失败；
+ * 
+ */
 Promise.all([read("1.txt"), read('2.txt')]).then(([one, two]) => { // 此处[one,two]用到了对象解构
     console.log(one, two)
 });
@@ -37,7 +38,12 @@ Promise.all([read("1.txt"), read('2.txt')]).then((data) => { // 此处data是一
     console.log(data)
 });
 
-//race（赛跑-谁的返回的快就用谁的结果，失败和成功也是由最快返回的结果决定） 如果有一项任务先成功了，那就成功，如果有一项任务失败了，那就是失败
+
+/**
+ * Promise.rece 
+ *（赛跑-谁的返回的快就用谁的结果，失败和成功也是由最快返回的结果决定） 如果有一项任务先成功了，那就成功，如果有一项任务失败了，那就是失败
+ * 
+ */
 Promise.race([read("1.txt"), read('2.txt')]).then(data => {
     console.log(data);
 }).catch(err => {

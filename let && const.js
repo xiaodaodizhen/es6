@@ -37,6 +37,10 @@ let g = function () {
 
 }
 
+
+console.log(a);// 不会预解释
+let a = 1;
+
 // 备注拓展：{} 可以表示一个作用域（里面必须含有let ，否则无效）；
 {
     let a = 1;

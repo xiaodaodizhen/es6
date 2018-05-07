@@ -25,13 +25,13 @@ let z = a => ({ name: 'xg' })
 
 // 高阶函数，函数可以当作参数，或者返回函数
 function e(x) {
-    return function y(y) {
+    return function (y) {
         return x + y
     }
 }
 //---以上高阶函数简写
-let a = x => y => x + y; 
-console.log(a(3)(4));
+let e = x => y => x + y;
+console.log(e(3)(4));
 
 // 3. 参数的剩余(只能用作最后一个参数)
 function sum(one, ...arrs) {
@@ -49,4 +49,25 @@ sum("￥", 2, 3, 4, 5, 6);
 
 
 
-// this 指向问题，---补充截图；
+/**
+ * 
+ * this 指向问题
+ * 1.谁调用,this就是谁
+ * 2.箭头函数没this,this指代的是上一级的this
+ * 3.没有arguments 需要自己创造arguments
+ * 4.箭头函数内部没有this指向，箭头函数没有arguments 
+ */
+let a = 2; // 不会声明到全局上
+let obj = { // 对象不是作用域
+    a: 1,
+    fn: () => {
+        setTimeout(() => {
+            console.log(this.a)
+        })
+    }
+}
+obj.fn();
+let a = (...arguments) => {
+    console.log(arguments);
+}
+a(1, 2, 3, 4, 5);
